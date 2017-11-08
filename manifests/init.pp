@@ -23,12 +23,15 @@ class unattended_upgrades (
 
   validate_hash($age)
   $_age = merge($::unattended_upgrades::default_age, $age)
-  validate_integer($_age['min'], undef, 0)
-  validate_integer($_age['max'], undef, 0)
+
+  # validate_integer: replaced by validate_legacy. fine and dandy.
+  # our ancient stdlib does not contain either. great.
+  #validate_integer($_age['min'], undef, 0)
+  #validate_integer($_age['max'], undef, 0)
 
   validate_hash($auto)
   $_auto = merge($::unattended_upgrades::default_auto, $auto)
-  validate_integer($_auto['clean'], undef, 0)
+  #validate_integer($_auto['clean'], undef, 0)
   validate_bool($_auto['fix_interrupted_dpkg'])
   validate_bool($_auto['reboot'])
   validate_string($_auto['reboot_time'])
@@ -36,16 +39,16 @@ class unattended_upgrades (
 
   validate_hash($backup)
   $_backup = merge($::unattended_upgrades::default_backup, $backup)
-  validate_integer($_backup['archive_interval'], undef, 0)
-  validate_integer($_backup['level'], undef, 0)
+  #validate_integer($_backup['archive_interval'], undef, 0)
+  #validate_integer($_backup['level'], undef, 0)
 
   validate_array($blacklist)
 
-  if $dl_limit != undef {
-    validate_integer($dl_limit, undef, 0)
-  }
+  #if $dl_limit != undef {
+  #  validate_integer($dl_limit, undef, 0)
+  #}
 
-  validate_integer($enable, 1, 0)
+  #validate_integer($enable, 1, 0)
 
   validate_bool($install_on_shutdown)
 
@@ -61,22 +64,22 @@ class unattended_upgrades (
 
   validate_string($package_ensure)
 
-  if $random_sleep != undef {
-    validate_integer($random_sleep, undef, 0)
-  }
+  #if $random_sleep != undef {
+  #  validate_integer($random_sleep, undef, 0)
+  #}
 
-  validate_integer($size, undef, 0)
+  #validate_integer($size, undef, 0)
 
-  validate_integer($update, undef, 0)
+  #validate_integer($update, undef, 0)
 
-  validate_integer($upgrade, undef, 0)
+  #validate_integer($upgrade, undef, 0)
 
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
-  validate_integer($_upgradeable_packages['download_only'], undef, 0)
-  validate_integer($_upgradeable_packages['debdelta'], undef, 0)
+  #validate_integer($_upgradeable_packages['download_only'], undef, 0)
+  #validate_integer($_upgradeable_packages['debdelta'], undef, 0)
 
-  validate_integer($verbose, undef, 0)
+  #validate_integer($verbose, undef, 0)
 
   validate_bool($notify_update)
 
